@@ -1,5 +1,9 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+
+// Using exported modules
+const { loadContact, findContact } = require('./utils/contacts');
+
 const app = express();
 const port = 3000;
 
@@ -46,10 +50,29 @@ app.get('/about', (req, res) => {
     });
 });
 
+// Contact Page
 app.get('/contact', (req, res) => {
+
+    // Load contacts
+    const contacts = loadContact();
+
     res.render('contact', {
         layout: 'layouts/main',
-        title: 'Halaman Contact'
+        title: 'Halaman Contact',
+        contacts
+    });
+});
+
+// Detail Contact Page
+app.get('/contact/:nama', (req, res) => {
+
+    // Load contacts
+    const contact = findContact(req.params.nama);
+
+    res.render('detailContact', {
+        layout: 'layouts/main',
+        title: 'Halaman Detail Contact',
+        contact
     });
 });
 
