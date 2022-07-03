@@ -55,10 +55,47 @@ const checkDuplicate = (nama) => {
     return contacts.find((contact) => contact.nama === nama);
 };
 
+
+// Delete Contact
+const deleteContact = (nama) => {
+
+    // Load Contacts
+    const contacts = loadContact();
+
+    // Filter untuk mencari sampai akhir
+    const filteredContacts = contacts.filter((contact) => contact.nama !== nama);
+
+    // Save the deleted one
+    saveContacts(filteredContacts);
+
+};
+
+// Mengubah Contact
+const updateContacts = (contactBaru) => {
+
+    // Load Contacts
+    const contacts = loadContact();
+
+    // Filter untuk hilangkan kontak lama
+    const filteredContacts = contacts.filter((contact) => contact.nama !== contactBaru.oldNama);
+
+    // Delete oldContact
+    delete contactBaru.oldNama;
+
+    // push the data
+    filteredContacts.push(contactBaru);
+
+    // Save the updated one
+    saveContacts(filteredContacts);
+
+}
+
 // Export
 module.exports = {
     loadContact,
     findContact,
     addContact,
-    checkDuplicate
+    checkDuplicate,
+    deleteContact,
+    updateContacts
 };
