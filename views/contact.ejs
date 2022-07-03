@@ -3,6 +3,18 @@
         <div class="col-md-8">
             <h2>Daftar Kontak</h2>
 
+            <!-- Button Add Contact -->
+            <a href="/contact/add" class="btn btn-primary mb-2">Tambah Data Kontak</a>
+
+            <!-- Catching Flash -->
+            <% if (msg.length !== 0) { %>
+
+                <!-- Getting Message -->
+                <div class="alert alert-success" role="alert">
+                    <%= msg %> 
+                </div>
+            <% } %>
+
             <table class="table table-stripped">
                 <thead>
                   <tr>
@@ -31,7 +43,7 @@
                             <td><%= contact.nama %></td>
                             <td><%= contact.nohp %></td>
                             <td>
-                                <a href="/contact/<%= contact.nama %> " class="btn btn-success badge rounded-pill"><i class="bi bi-info-circle"></i> Detail</a>
+                                <a href="/contact/<%= contact.nama %>" class="btn btn-success badge rounded-pill"><i class="bi bi-info-circle"></i> Detail</a>
                             </td>
                         </tr>
                     <% }) %>

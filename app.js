@@ -1,8 +1,18 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 
+// Calling Validator
+const { body, validationResult, check } = require('express-validator');
+
 // Using exported modules
-const { loadContact, findContact } = require('./utils/contacts');
+const { loadContact, findContact, addContact, checkDuplicate} = require('./utils/contacts');
+
+// For Flash message
+const session = require('express-session');
+const flash = require('connect-flash');
+
+// For Cookie
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 3000;
@@ -14,7 +24,19 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts);
 
 // Built in middleware
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true })); // For Parsing (Enable extended for avoiding problem)
+
+// Konfigurasi Flash
+app.use(cookieParser('secret'));
+app.use(session({
+    cookie: { maxAge: 6000 },
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+    })
+);
+app.use(flash());
 
 app.get('/', (req, res) => {
 
@@ -59,8 +81,70 @@ app.get('/contact', (req, res) => {
     res.render('contact', {
         layout: 'layouts/main',
         title: 'Halaman Contact',
-        contacts
+        contacts,
+        msg: req.flash('msg')
     });
+});
+
+// Tambah Data Contact
+app.get('/contact/add', (req, res) => {
+
+    res.render('addContact', {
+        layout: 'layouts/main',
+        title: 'Halaman Tambah Contact'
+    });
+});
+
+// Proses Tambah Data
+app.post('/contact', [
+
+    // Validation
+    check('email', 'Email Tidak Valid').isEmail(),
+    check('nohp', 'No HP Tidak Valid').isMobilePhone('id-ID'),
+
+    // Custom Validation
+    body('nama').custom((value) => {
+
+        // Cek Duplikatnya
+        const duplicate = checkDuplicate(value);
+
+        // Kalau Ada yang duplikat
+        if(duplicate){
+            throw new Error('Nama Kontak Sudah ada');
+        }
+
+        return true;
+    })
+
+], (req, res) => {
+
+    // Konstanta errors
+    const errors = validationResult(req);
+
+    // Kalau error
+    if(!errors.isEmpty())
+    {
+        // If Error
+        // return res.status(400).json({ errors: errors.array() });
+
+        res.render('addContact', {
+            layout: 'layouts/main',
+            title: 'Halaman Tambah Contact',
+            errors: errors.array(),
+        });
+
+    }else{
+
+        // New Function for adding contact
+        addContact(req.body);
+        
+        // Sending flash Message
+        req.flash('msg', 'Kontak Berhasil Ditambahkan');
+
+        // Redirect 
+        res.redirect('/contact');
+    }
+
 });
 
 // Detail Contact Page
