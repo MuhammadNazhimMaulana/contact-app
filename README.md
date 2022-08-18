@@ -1,1 +1,1 @@
-# Simple Contact App
+# Contact App
