@@ -20,8 +20,9 @@
             <% } %>
 
             <!-- Form Tambah Kontak -->
-            <form method="post" action="/contact/update">
+            <form method="post" action="/contact?_method=PUT">
                 <input type="hidden" name="oldNama" value="<%= contact.oldNama || contact.nama %>">
+                <input type="hidden" name="_id" value="<%= contact._id %>">
                 <div class="mb-3">
                   <label for="nama" class="form-label">Nama</label>
                   <input type="text" class="form-control" id="nama" name="nama" required value="<%= contact.nama %>">
@@ -31,8 +32,8 @@
                   <input type="email" class="form-control" id="email" name="email" required value="<%= contact.email %>">
                 </div>
                 <div class="mb-3">
-                  <label for="nohp" class="form-label">Nomor HP</label>
-                  <input type="text" class="form-control" id="nohp" name="nohp" required value="<%= contact.nohp %>">
+                  <label for="noHp" class="form-label">Nomor HP</label>
+                  <input type="text" class="form-control" id="noHp" name="noHp" required value="<%= contact.noHp %>">
                 </div>
                 <button type="submit" class="btn btn-primary">Ubah Data Kontak</button>
             </form>
