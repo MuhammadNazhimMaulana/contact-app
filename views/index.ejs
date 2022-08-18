@@ -1,0 +1,26 @@
+<h1>Halo Dunia</h1>
+   
+    <p>Selamat datang di site ini</p>
+
+    <!-- Menggunakan Variabel yang dibuat -->
+    <h2>Halo <%= name %></h2>
+
+    <!-- Parsing Array of Object -->
+    <h4>Daftar Mahasiswa</h4>
+
+    <!-- If -->
+    <% if (mahasiswa.length < 1) { %>
+        <p>Data Mahasiswa Masih Kosong</p>
+
+    <!-- Else -->
+    <% }else { %>
+
+        <!-- Looping -->
+        <% mahasiswa.forEach(mhs => { %>
+            <ul>
+                <li>Nama: <%= mhs.nama %> </li>
+                <li>Email <%= mhs.email %></li>
+            </ul>
+        <% }) %>
+
+    <% } %> 
