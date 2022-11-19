@@ -1,6 +1,6 @@
 # Simple Contact App
 
-A simple Contact App built with express js and mongodb, run :
+simple Contact App built with express js and mongodb, run :
 
 ```
 npm install
