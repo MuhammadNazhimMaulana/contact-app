@@ -5,7 +5,7 @@ const expressLayouts = require('express-ejs-layouts');
 const { body, validationResult, check } = require('express-validator');
 
 // Using exported modules
-const { loadContact, findContact, addContact, checkDuplicate} = require('./utils/contacts');
+const { loadContact, findContact, addContact, checkDuplicate, deleteContact, updateContacts} = require('./utils/contacts');
 
 // For Flash message
 const session = require('express-session');
@@ -146,6 +146,95 @@ app.post('/contact', [
     }
 
 });
+
+// Proses Delete
+app.get('/contact/delete/:nama', (req, res) => {
+
+    // Load contacts
+    const contact = findContact(req.params.nama);
+
+    // If the contact is not exist
+    if( !contact )
+    {
+        res.status(404);
+        res.send('<h1>Gagal</h1>');
+        
+    }else{
+        // If exist delete
+        deleteContact(req.params.nama);
+
+        // Sending flash Message
+        req.flash('msg', 'Kontak Berhasil Dihapus');
+
+        // Redirect
+        res.redirect('/contact');
+    }
+});
+
+// Ubah data contact
+app.get('/contact/edit/:nama', (req, res) => {
+
+    // Getting contact
+    const contact = findContact(req.params.nama);
+
+    res.render('editContact', {
+        layout: 'layouts/main',
+        title: 'Halaman Edit Contact',
+        contact
+    });
+});
+
+// Proses Ubah data contact
+app.post('/contact/update', [
+
+    // Validation
+    check('email', 'Email Tidak Valid').isEmail(),
+    check('nohp', 'No HP Tidak Valid').isMobilePhone('id-ID'),
+
+    // Custom Validation
+    body('nama').custom((value, { req }) => {
+
+        // Cek Duplikatnya
+        const duplicate = checkDuplicate(value);
+
+        // Kalau Ada yang duplikat dan namanya sama
+        if( value!= req.body.oldNama && duplicate ){
+            throw new Error('Nama Kontak Sudah ada');
+        }
+
+        return true;
+    })
+
+], (req, res) => {
+
+    // Konstanta errors
+    const errors = validationResult(req);
+
+    // Kalau error
+    if(!errors.isEmpty())
+    {
+        // If Error
+        res.render('editContact', {
+            layout: 'layouts/main',
+            title: 'Halaman Ubah Contact',
+            errors: errors.array(),
+            contact: req.body
+        });
+
+    }else{
+
+        // New Function for updating contact
+        updateContacts(req.body);
+        
+        // Sending flash Message
+        req.flash('msg', 'Kontak Berhasil Diubah');
+
+        // Redirect 
+        res.redirect('/contact');
+    }
+
+});
+
 
 // Detail Contact Page
 app.get('/contact/:nama', (req, res) => {
