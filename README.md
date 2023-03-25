@@ -1,6 +1,6 @@
 # Contact App
 
-This is a simple contact app that is built with express js and the front end is using ejs.
+This is a simple contact app that is built with express js and the front end is using ejs as templating engine.
 
 ```
 npm install
