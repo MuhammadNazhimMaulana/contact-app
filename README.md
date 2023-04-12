@@ -1,6 +1,6 @@
 # Contact App
 
-Simp contact app that is built with express js and the front end is using ejs as templating engine.
+Sim contact app that is built with express js and the front end is using ejs as templating engine.
 
 ```
 npm install
