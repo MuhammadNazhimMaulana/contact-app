@@ -1,6 +1,6 @@
 # Contact App
 
-at is built with express js and the front end is using ejs as templating engine.
+hat is built with express js and the front end is using ejs as templating engine.
 
 ```
 npm install
