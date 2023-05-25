@@ -1,6 +1,6 @@
 # Contact App
 
-An s app that is built with express js and the front end is using ejs as templating engine.
+An app that is built with express js and the front end is using ejs as templating engine.
 
 ```
 npm install
