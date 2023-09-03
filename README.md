@@ -6,7 +6,7 @@ A simple app that is built with express js and the front end is using ejs as tem
 npm install
 ```
 
-Then run the development server
+Then run the local development server
 
 ```
 npm start
