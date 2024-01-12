@@ -1,7 +1,7 @@
 # Contact App
  
-A simple app that is built with express js and the front end is using ejs as templating engine. 
- 
+An app that is built with express js and the front end is using ejs as templating engine. 
+  
 ```
 npm install
 ```
@@ -11,7 +11,7 @@ Then run the local development server
 ```
 npm start
 ```
-
+  
 <br>
 
 <!-- CONTRIBUTOR -->
