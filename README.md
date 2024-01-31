@@ -7,7 +7,7 @@ npm install
 ```
 
 Then run the local development server
-
+   
 ```
 npm start
 ```
@@ -15,7 +15,7 @@ npm start
 <br>  
 
 <!-- CONTRIBUTOR -->
-Contributor :
+Contributor :   
 <br>
 [![Gmail: Muhammad Nazhim Maulana](https://img.shields.io/badge/-nazhimmaulanamuhammad@gmail.com-maroon?style=flat&logo=gmail)](https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqTfrDgzWPFFgSKDLmBlPGRmCRXMQVTgqZDWJrxHDMJkSBGGCGnnGJhRKjrbzjJmFqnZFg)
 [![GitHub Muhammad Nazhim Maulana](https://img.shields.io/github/followers/wildanie12?label=follow&style=social)](https://github.com/MuhammadNazhimMaulana)
