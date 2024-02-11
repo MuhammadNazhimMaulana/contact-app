@@ -5,15 +5,15 @@ An app that is built with express js and the front end is using ejs as templatin
 ```
 npm install
 ```
-   
+         
 Then run the local development server
    
 ```
 npm start
 ```
                
-<br>     
-      
+<br>        
+                    
 <!-- CONTRIBUTOR -->
 Contributor :   
 <br>
