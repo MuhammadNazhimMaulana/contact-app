@@ -24,6 +24,6 @@ Contributor :
 
 <h3 style="margin-top: 20px;">
     <p align="center">&copy; 2024 from Bone</p>
-</h3>
+</h3>    
 <!-- Closing -->
                          
