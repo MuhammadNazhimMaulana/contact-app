@@ -12,7 +12,7 @@ Then run the local development server
 npm start
 ```     
                
-<br>                  
+<br> 
                             
 <!-- CONTRIBUTOR -->
 Contributor :       
@@ -26,4 +26,3 @@ Contributor :
     <p align="center">&copy; 2024 from Bone</p>
 </h3>    
 <!-- Closing -->
-                             
