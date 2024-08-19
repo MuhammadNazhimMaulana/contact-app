@@ -27,7 +27,3 @@ Contributor :
 
 <!-- Closing -->     
 
-
-
-
-
